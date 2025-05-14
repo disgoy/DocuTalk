@@ -9,6 +9,8 @@ import {
   SignedOut,
   UserButton,
 } from '@clerk/nextjs'
+import Providers from "@/components/Providers";
+import { Toaster } from "react-hot-toast";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,11 +34,14 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider>
-    <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>  
-          {children}
-      </body>
-    </html>
+      <Providers>
+        <html lang="en">
+          <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>  
+              {children}
+          </body>
+        </html>
+        <Toaster />
+      </Providers>
     </ClerkProvider>
   );
 }
